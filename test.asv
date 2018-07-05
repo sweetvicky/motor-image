@@ -1,0 +1,17 @@
+% mian.m
+load('A01E.mat');
+[preX T Y Fs] = preProcess(data,1);
+% [EEG, com, b] = pop_eegfiltnew(outputX);
+
+%经过butter滤波
+wn = [8 30] / Fs;
+norder = 5;
+butterX = butterfilter(preX,norder,wn,'bandpass');
+
+%将数据分离出来                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+figure();
+plot(preX(1,:),'r');
+hold on;
+plot(butterX(1,:),'k')
+xlabel('Time');
+ylabel('Amplitude')
